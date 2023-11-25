@@ -66,8 +66,9 @@ void main()
 				uintptr_t entity = proxyproc::read_virtual_memory<uintptr_t>(ent_entry + 120 * (entity_id & 0x1FF));
 
 				int team = proxyproc::read_virtual_memory<int>(entity + player::m_iTeamNum);
+				int health = proxyproc::read_virtual_memory<int>(entity + player::m_iHealth);
 
-				if (team != localteam)
+				if (team != localteam && health > 0)
 				{
 					mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
 					Sleep(10);
